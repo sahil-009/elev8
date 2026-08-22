@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { photos } from "@/lib/site";
+import { useReveal, useRevealChildren } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/colleges")({
   head: () => ({
@@ -61,11 +62,19 @@ const steps = [
 ];
 
 function CollegesPage() {
+  const heroTextRef = useReveal<HTMLDivElement>();
+  const heroImgRef = useReveal<HTMLImageElement>();
+  const accelTitleRef = useReveal<HTMLDivElement>();
+  const stepsRef = useRevealChildren<HTMLOListElement>();
+  const outcomeRef = useReveal<HTMLDivElement>();
+  const durationsRef = useRevealChildren<HTMLDivElement>();
+  const ctaRef = useReveal<HTMLDivElement>();
+
   return (
     <>
       <section className="border-b border-border">
         <div className="container-page grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2">
-          <div>
+          <div ref={heroTextRef} className="reveal-left">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               For Colleges
             </p>
@@ -78,30 +87,33 @@ function CollegesPage() {
             </p>
           </div>
           <img
+            ref={heroImgRef}
             src={photos.batchGroup}
             alt="An Elev8 placement training batch after a campus session"
-            className="aspect-4/3 w-full rounded-sm object-cover"
+            className="reveal-right aspect-4/3 w-full rounded-sm object-cover"
           />
         </div>
       </section>
 
       <section className="border-b border-border bg-secondary">
         <div className="container-page py-16 md:py-20">
-          <h2 className="text-3xl font-bold sm:text-4xl">Elev8 Placement Accelerator</h2>
-          <p className="mt-4 max-w-3xl text-muted-foreground">
-            A structured, outcome-driven system designed around how companies actually hire, not how
-            students typically prepare. Each stage aligns with real recruitment rounds, ensuring
-            students are prepared at every step of the hiring process.
-          </p>
+          <div ref={accelTitleRef} className="reveal">
+            <h2 className="text-3xl font-bold sm:text-4xl">Elev8 Placement Accelerator</h2>
+            <p className="mt-4 max-w-3xl text-muted-foreground">
+              A structured, outcome-driven system designed around how companies actually hire, not how
+              students typically prepare. Each stage aligns with real recruitment rounds, ensuring
+              students are prepared at every step of the hiring process.
+            </p>
+          </div>
 
           <div className="mt-12">
             <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-primary">
               Placement preparation flow
             </h3>
-            <ol className="mt-8 space-y-0 border-l-2 border-primary/25 pl-8">
+            <ol ref={stepsRef} className="mt-8 space-y-0 border-l-2 border-primary/25 pl-8">
               {steps.map((step, i) => (
-                <li key={step.title} className="relative pb-10 last:pb-0">
-                  <span className="absolute -left-[2.6rem] flex size-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
+                <li key={step.title} className="reveal-child relative pb-10 last:pb-0">
+                  <span className="step-number absolute -left-[2.6rem] flex size-8 items-center justify-center rounded-full bg-primary font-display text-sm font-bold text-primary-foreground">
                     {i + 1}
                   </span>
                   <h4 className="text-lg font-bold">{step.title}</h4>
@@ -110,7 +122,7 @@ function CollegesPage() {
               ))}
             </ol>
 
-            <div className="mt-8 ml-0 rounded-sm border border-primary/30 bg-accent p-6 md:ml-8">
+            <div ref={outcomeRef} className="reveal-scale mt-8 ml-0 rounded-sm border border-primary/30 bg-accent p-6 md:ml-8">
               <p className="font-display text-lg font-bold text-primary">Outcome: Placement Ready</p>
               <p className="mt-2 text-sm text-foreground/80">
                 Students are prepared for each stage of the hiring process and able to perform with
@@ -122,13 +134,13 @@ function CollegesPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="container-page grid gap-10 py-16 md:grid-cols-3">
+        <div ref={durationsRef} className="container-page grid gap-10 py-16 md:grid-cols-3">
           {[
             { t: "30 hours", d: "A focused sprint covering aptitude and interview essentials." },
             { t: "60 hours", d: "Deeper coverage across aptitude, technical rounds, GD and mocks." },
             { t: "Full-year", d: "Year-long readiness building aligned to your placement calendar." },
           ].map((p) => (
-            <div key={p.t} className="border-t-2 border-ink pt-5">
+            <div key={p.t} className="reveal-child border-t-2 border-ink pt-5">
               <h3 className="text-xl font-bold">{p.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{p.d}</p>
             </div>
@@ -137,14 +149,14 @@ function CollegesPage() {
       </section>
 
       <section className="bg-ink text-ink-foreground">
-        <div className="container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
+        <div ref={ctaRef} className="reveal container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
           <p className="max-w-2xl font-display text-xl font-bold sm:text-2xl">
             From first assessment to final interview, every stage is structured for one outcome —
             selection.
           </p>
           <Link
             to="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="cta-glow inline-flex shrink-0 items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Plan a program <ArrowRight className="size-4" />
           </Link>

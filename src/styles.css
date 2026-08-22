@@ -179,3 +179,178 @@
     padding-inline: 2.5rem;
   }
 }
+
+/* ─── Scroll-reveal animations ───────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal[data-revealed] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left[data-revealed] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-right[data-revealed] {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-scale[data-revealed] {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered children */
+.reveal-child {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-child[data-revealed] {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── Stat counter shimmer ───────────────────────────────── */
+
+@keyframes stat-shine {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.stat-value {
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    oklch(0.7 0.18 30) 50%,
+    var(--primary) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: stat-shine 3s ease-in-out infinite;
+}
+
+/* ─── Gallery image hover ────────────────────────────────── */
+
+.gallery-img {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.gallery-img:hover {
+  transform: scale(1.03);
+}
+
+.gallery-img img {
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-img:hover img {
+  transform: scale(1.08);
+}
+
+/* ─── Card lift on hover ─────────────────────────────────── */
+
+.card-lift {
+  transition:
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.3s ease;
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px oklch(0 0 0 / 8%);
+}
+
+/* ─── CTA button glow pulse ──────────────────────────────── */
+
+@keyframes cta-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.502 0.199 12.5 / 40%); }
+  50% { box-shadow: 0 0 20px 4px oklch(0.502 0.199 12.5 / 20%); }
+}
+
+.cta-glow {
+  animation: cta-glow 2.5s ease-in-out infinite;
+}
+
+/* ─── Hero floating image ────────────────────────────────── */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* ─── Step timeline pulse ────────────────────────────────── */
+
+@keyframes step-pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.step-number[data-revealed] {
+  animation: step-pop 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale,
+  .reveal-child,
+  .stat-value,
+  .gallery-img,
+  .gallery-img img,
+  .card-lift,
+  .cta-glow,
+  .float,
+  .step-number {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

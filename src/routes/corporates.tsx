@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Megaphone, Compass, Users, Handshake } from "lucide-react";
 import { photos } from "@/lib/site";
+import { useReveal, useRevealChildren } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/corporates")({
   head: () => ({
@@ -70,11 +71,18 @@ const formats = [
 ];
 
 function CorporatesPage() {
+  const heroTextRef = useReveal<HTMLDivElement>();
+  const heroImgRef = useReveal<HTMLImageElement>();
+  const focusTitleRef = useReveal<HTMLHeadingElement>();
+  const focusCardsRef = useRevealChildren<HTMLDivElement>();
+  const detailsRef = useRevealChildren<HTMLDivElement>();
+  const ctaRef = useReveal<HTMLDivElement>();
+
   return (
     <>
       <section className="border-b border-border">
         <div className="container-page grid items-center gap-12 py-16 md:py-20 lg:grid-cols-2">
-          <div>
+          <div ref={heroTextRef} className="reveal-left">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               For Corporates
             </p>
@@ -88,19 +96,20 @@ function CorporatesPage() {
             </p>
           </div>
           <img
+            ref={heroImgRef}
             src={photos.teamSession}
             alt="Activity-based team building session with a corporate group"
-            className="aspect-4/3 w-full rounded-sm object-cover"
+            className="reveal-right aspect-4/3 w-full rounded-sm object-cover"
           />
         </div>
       </section>
 
       <section className="border-b border-border bg-secondary">
         <div className="container-page py-16 md:py-20">
-          <h2 className="text-3xl font-bold sm:text-4xl">Core focus areas</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <h2 ref={focusTitleRef} className="reveal text-3xl font-bold sm:text-4xl">Core focus areas</h2>
+          <div ref={focusCardsRef} className="mt-10 grid gap-6 md:grid-cols-2">
             {focusAreas.map((area) => (
-              <div key={area.title} className="rounded-sm border border-border bg-card p-8">
+              <div key={area.title} className="card-lift reveal-child rounded-sm border border-border bg-card p-8">
                 <area.icon className="size-6 text-primary" />
                 <h3 className="mt-4 text-xl font-bold">{area.title}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{area.body}</p>
@@ -111,8 +120,8 @@ function CorporatesPage() {
       </section>
 
       <section className="border-b border-border">
-        <div className="container-page grid gap-12 py-16 md:py-20 lg:grid-cols-3">
-          <div>
+        <div ref={detailsRef} className="container-page grid gap-12 py-16 md:py-20 lg:grid-cols-3">
+          <div className="reveal-child">
             <h2 className="text-2xl font-bold">How we work</h2>
             <ol className="mt-6 space-y-4">
               {howWeWork.map((item, i) => (
@@ -123,7 +132,7 @@ function CorporatesPage() {
               ))}
             </ol>
           </div>
-          <div>
+          <div className="reveal-child">
             <h2 className="text-2xl font-bold">Outcomes</h2>
             <ul className="mt-6 space-y-4">
               {outcomes.map((item) => (
@@ -134,7 +143,7 @@ function CorporatesPage() {
               ))}
             </ul>
           </div>
-          <div>
+          <div className="reveal-child">
             <h2 className="text-2xl font-bold">Engagement formats</h2>
             <ul className="mt-6 space-y-4">
               {formats.map((item) => (
@@ -149,14 +158,14 @@ function CorporatesPage() {
       </section>
 
       <section className="bg-ink text-ink-foreground">
-        <div className="container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
+        <div ref={ctaRef} className="reveal container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
           <p className="max-w-2xl font-display text-xl font-bold sm:text-2xl">
             When communication improves, performance follows. When leadership improves,
             organizations grow.
           </p>
           <Link
             to="/contact"
-            className="inline-flex shrink-0 items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="cta-glow inline-flex shrink-0 items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Discuss your team <ArrowRight className="size-4" />
           </Link>

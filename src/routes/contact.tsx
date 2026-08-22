@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Mail, Phone, Linkedin, Instagram } from "lucide-react";
 import { toast } from "sonner";
 import { contact } from "@/lib/site";
+import { useReveal } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -28,11 +29,13 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   const [audience, setAudience] = useState<"college" | "corporate">("college");
+  const infoRef = useReveal<HTMLDivElement>();
+  const formRef = useReveal<HTMLFormElement>();
 
   return (
     <section className="border-b border-border">
       <div className="container-page grid gap-14 py-16 md:py-20 lg:grid-cols-[1fr_1.1fr]">
-        <div>
+        <div ref={infoRef} className="reveal-left">
           <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">Talk to us</h1>
           <p className="mt-5 max-w-md text-lg text-muted-foreground">
             Tell us about your college or your team, and we'll design the program around your
@@ -74,7 +77,8 @@ function ContactPage() {
         </div>
 
         <form
-          className="rounded-sm border border-border bg-card p-8"
+          ref={formRef}
+          className="reveal-right rounded-sm border border-border bg-card p-8"
           onSubmit={(e) => {
             e.preventDefault();
             const form = e.currentTarget;

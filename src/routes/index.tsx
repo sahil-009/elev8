@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, Building2, GraduationCap } from "lucide-react";
 import { contact, gallery, photos, stats } from "@/lib/site";
+import { useReveal, useRevealChildren } from "@/hooks/useReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,11 +28,22 @@ export const Route = createFileRoute("/")({
 });
 
 function HomePage() {
+  const heroTextRef = useReveal<HTMLDivElement>();
+  const heroImgRef = useReveal<HTMLDivElement>();
+  const statsRef = useRevealChildren<HTMLDivElement>();
+  const whoTitleRef = useReveal<HTMLHeadingElement>();
+  const cardsRef = useRevealChildren<HTMLDivElement>();
+  const snapTitleRef = useReveal<HTMLHeadingElement>();
+  const snapCardsRef = useRevealChildren<HTMLDivElement>();
+  const galleryTitleRef = useReveal<HTMLDivElement>();
+  const galleryGridRef = useRevealChildren<HTMLDivElement>();
+  const ctaRef = useReveal<HTMLDivElement>();
+
   return (
     <>
       <section className="relative overflow-hidden border-b border-border">
         <div className="container-page grid items-center gap-12 py-16 md:py-24 lg:grid-cols-[1.05fr_1fr]">
-          <div>
+          <div ref={heroTextRef} className="reveal-left">
             <p className="inline-flex items-center rounded-sm border border-primary/30 bg-accent px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               14 years of training excellence
             </p>
@@ -46,7 +58,7 @@ function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                className="cta-glow inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
               >
                 Talk to Us <ArrowRight className="size-4" />
               </Link>
@@ -59,7 +71,7 @@ function HomePage() {
             </div>
           </div>
 
-          <div className="relative">
+          <div ref={heroImgRef} className="reveal-right relative">
             <img
               src={photos.auditoriumCelebration}
               alt="Students celebrating at the close of an Elev8 campus placement program"
@@ -69,19 +81,19 @@ function HomePage() {
             <img
               src={photos.labSession}
               alt="Aptitude practice session in a college computer lab"
-              className="absolute -bottom-8 -left-8 hidden w-52 rounded-sm border-4 border-background object-cover shadow-xl lg:block"
+              className="float absolute -bottom-8 -left-8 hidden w-52 rounded-sm border-4 border-background object-cover shadow-xl lg:block"
             />
           </div>
         </div>
       </section>
 
       <section className="border-b border-border bg-ink text-ink-foreground">
-        <div className="container-page grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
+        <div ref={statsRef} className="container-page grid grid-cols-2 gap-8 py-12 md:grid-cols-4">
           {stats.map((s) => (
-            <div key={s.label}>
-              <p className="font-display text-3xl font-extrabold text-primary sm:text-4xl">
+            <div key={s.label} className="reveal-child">
+              <p className="stat-value font-display text-3xl font-extrabold sm:text-4xl">
                 {s.value}
-                <span className="text-ink-foreground">{s.suffix}</span>
+                <span className="text-ink-foreground" style={{ WebkitTextFillColor: "unset" }}>{s.suffix}</span>
               </p>
               <p className="mt-2 text-sm text-ink-foreground/70">{s.label}</p>
             </div>
@@ -91,11 +103,11 @@ function HomePage() {
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="text-3xl font-bold sm:text-4xl">Who we work with</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <h2 ref={whoTitleRef} className="reveal text-3xl font-bold sm:text-4xl">Who we work with</h2>
+          <div ref={cardsRef} className="mt-10 grid gap-6 md:grid-cols-2">
             <Link
               to="/colleges"
-              className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
+              className="card-lift reveal-child group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
             >
               <img
                 src={photos.campusCohort}
@@ -119,7 +131,7 @@ function HomePage() {
 
             <Link
               to="/corporates"
-              className="group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
+              className="card-lift reveal-child group flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
             >
               <img
                 src={photos.corporateGroup}
@@ -146,9 +158,9 @@ function HomePage() {
 
       <section className="border-b border-border bg-secondary">
         <div className="container-page py-16 md:py-20">
-          <h2 className="text-3xl font-bold sm:text-4xl">Programs snapshot</h2>
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-sm border border-border bg-card p-8">
+          <h2 ref={snapTitleRef} className="reveal text-3xl font-bold sm:text-4xl">Programs snapshot</h2>
+          <div ref={snapCardsRef} className="mt-10 grid gap-6 md:grid-cols-2">
+            <div className="card-lift reveal-child rounded-sm border border-border bg-card p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 For Colleges
               </p>
@@ -167,7 +179,7 @@ function HomePage() {
               </ul>
             </div>
 
-            <div className="rounded-sm border border-border bg-card p-8">
+            <div className="card-lift reveal-child rounded-sm border border-border bg-card p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
                 For Corporates
               </p>
@@ -190,26 +202,29 @@ function HomePage() {
 
       <section className="border-b border-border">
         <div className="container-page py-16 md:py-20">
-          <h2 className="text-3xl font-bold sm:text-4xl">On campus and in the room</h2>
-          <p className="mt-3 max-w-2xl text-muted-foreground">
-            A look at sessions delivered across colleges and organizations.
-          </p>
-          <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
+          <div ref={galleryTitleRef} className="reveal">
+            <h2 className="text-3xl font-bold sm:text-4xl">On campus and in the room</h2>
+            <p className="mt-3 max-w-2xl text-muted-foreground">
+              A look at sessions delivered across colleges and organizations.
+            </p>
+          </div>
+          <div ref={galleryGridRef} className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-4">
             {gallery.map((g) => (
-              <img
-                key={g.src}
-                src={g.src}
-                alt={g.alt}
-                loading="lazy"
-                className="aspect-4/3 w-full rounded-sm object-cover"
-              />
+              <div key={g.src} className="gallery-img reveal-child rounded-sm">
+                <img
+                  src={g.src}
+                  alt={g.alt}
+                  loading="lazy"
+                  className="aspect-4/3 w-full rounded-sm object-cover"
+                />
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       <section className="bg-ink text-ink-foreground">
-        <div className="container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
+        <div ref={ctaRef} className="reveal container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
           <div>
             <h2 className="text-2xl font-bold sm:text-3xl">
               Ready to improve your placement or team outcomes?
@@ -220,7 +235,7 @@ function HomePage() {
           </div>
           <Link
             to="/contact"
-            className="inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+            className="cta-glow inline-flex items-center gap-2 rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Talk to Us <ArrowRight className="size-4" />
           </Link>
