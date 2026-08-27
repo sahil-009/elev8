@@ -55,8 +55,8 @@ export const contact = {
 };
 
 export const stats = [
-  { value: "14", suffix: " Years", label: "Of training excellence" },
-  { value: "20,000+", suffix: "", label: "Students trained" },
-  { value: "100+", suffix: "", label: "College partners" },
-  { value: "70+", suffix: "", label: "Corporate sessions delivered" },
+  { value: "14", numericEnd: 14, suffix: " Years", label: "Of training excellence" },
+  { value: "2,00,000+", numericEnd: 200000, suffix: "+", label: "Professionals trained" },
+  { value: "100+", numericEnd: 100, suffix: "+", label: "College partners" },
+  { value: "70+", numericEnd: 70, suffix: "+", label: "Corporate sessions delivered" },
 ];

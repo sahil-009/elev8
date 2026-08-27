@@ -79,7 +79,7 @@ function CollegesPage() {
               For Colleges
             </p>
             <h1 className="mt-4 text-4xl font-extrabold leading-tight sm:text-5xl">
-              Preparing students for the job they deserve
+              Preparing students for <span className="text-primary">the job they deserve</span>
             </h1>
             <p className="mt-6 text-lg text-muted-foreground">
               We help colleges improve placements and make students job-ready through practical,
@@ -98,7 +98,7 @@ function CollegesPage() {
       <section className="border-b border-border bg-secondary">
         <div className="container-page py-16 md:py-20">
           <div ref={accelTitleRef} className="reveal">
-            <h2 className="text-3xl font-bold sm:text-4xl">Elev8 Placement Accelerator</h2>
+            <h2 className="text-3xl font-bold sm:text-4xl">Elev8 <span className="text-primary">Placement Accelerator</span></h2>
             <p className="mt-4 max-w-3xl text-muted-foreground">
               A structured, outcome-driven system designed around how companies actually hire, not how
               students typically prepare. Each stage aligns with real recruitment rounds, ensuring
@@ -151,8 +151,8 @@ function CollegesPage() {
       <section className="bg-ink text-ink-foreground">
         <div ref={ctaRef} className="reveal container-page flex flex-col items-start justify-between gap-6 py-14 md:flex-row md:items-center">
           <p className="max-w-2xl font-display text-xl font-bold sm:text-2xl">
-            From first assessment to final interview, every stage is structured for one outcome —
-            selection.
+            From first assessment to final interview, every stage is structured for <span className="text-primary">one outcome —
+            selection</span>.
           </p>
           <Link
             to="/contact"

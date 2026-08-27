@@ -36,7 +36,7 @@ function ContactPage() {
     <section className="border-b border-border">
       <div className="container-page grid gap-14 py-16 md:py-20 lg:grid-cols-[1fr_1.1fr]">
         <div ref={infoRef} className="reveal-left">
-          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">Talk to us</h1>
+          <h1 className="text-4xl font-extrabold leading-tight sm:text-5xl">Talk <span className="text-primary">to us</span></h1>
           <p className="mt-5 max-w-md text-lg text-muted-foreground">
             Tell us about your college or your team, and we'll design the program around your
             outcomes.
@@ -134,7 +134,7 @@ function ContactPage() {
 
           <button
             type="submit"
-            className="mt-6 w-full rounded-sm bg-ink px-6 py-3 text-sm font-semibold text-ink-foreground transition-opacity hover:opacity-90"
+            className="mt-6 w-full rounded-sm bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
           >
             Send enquiry
           </button>

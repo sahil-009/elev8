@@ -10,7 +10,7 @@ export function SiteFooter() {
           <img src={logoUrl} alt="Elev8" className="h-9 w-auto brightness-0 invert" />
           <p className="mt-4 max-w-xs text-sm text-ink-foreground/70">
             Placement training for colleges and communication, leadership and team programs for
-            organizations. 14 years, 20,000+ students.
+            organizations. 14 years, 2,00,000+ professionals trained.
           </p>
         </div>
 
