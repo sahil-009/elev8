@@ -68,8 +68,8 @@ function HomePage() {
               14 years of building better talent
             </p>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl">
-              Your degree gets you the interview.{" "}
-              <span className="text-primary">We get you the job.</span>
+              Build confident communicators and{" "}
+              <span className="text-primary">effective leaders.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground">
               We partner with organizations and institutions to develop people who perform — from
@@ -83,7 +83,7 @@ function HomePage() {
                 Talk to Us <ArrowRight className="size-4" />
               </Link>
               <Link
-                to="/colleges"
+                to="/corporates"
                 className="inline-flex items-center gap-2 rounded-sm border border-ink px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-ink hover:text-ink-foreground"
               >
                 See Programs
@@ -93,15 +93,15 @@ function HomePage() {
 
           <div ref={heroImgRef} className="reveal-right relative">
             <img
-              src={photos.auditoriumCelebration}
-              alt="Students celebrating at the close of an Elev8 campus placement program"
-              className="aspect-4/3 w-full rounded-sm object-cover"
+              src={photos.teamSession}
+              alt="Activity-based team building session with a corporate group"
+              className="aspect-4/3 w-full rounded-sm object-cover object-[center_35%]"
               loading="eager"
             />
             <img
-              src={photos.labSession}
-              alt="Aptitude practice session in a college computer lab"
-              className="float absolute -bottom-8 -left-8 hidden w-52 rounded-sm border-4 border-background object-cover shadow-xl lg:block"
+              src={photos.corporateGroup}
+              alt="Corporate team during an Elev8 communication workshop"
+              className="float absolute -bottom-8 -left-8 hidden aspect-[4/3] w-52 rounded-sm border-4 border-background object-cover shadow-xl lg:block"
             />
           </div>
         </div>
@@ -157,50 +157,6 @@ function HomePage() {
         <div className="container-page py-16 md:py-20">
           <h2 ref={whoTitleRef} className="reveal text-3xl font-bold sm:text-4xl">Who <span className="text-primary">we work with</span></h2>
           <div ref={cardsRef} className="mt-10 grid gap-6 md:grid-cols-2">
-            {/* Colleges Card */}
-            <Link
-              to="/colleges"
-              className="card-lift reveal-child group relative flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
-            >
-              <div className="relative">
-                <img
-                  src={photos.campusCohort}
-                  alt="A college cohort at an Elev8 placement readiness program"
-                  className="h-56 w-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                <div className="absolute bottom-4 left-5 right-5">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">Campus Programs</p>
-                  <h3 className="mt-1 text-xl font-bold text-white">Colleges & Institutions</h3>
-                </div>
-              </div>
-              <div className="flex flex-1 flex-col p-7">
-                <p className="flex-1 text-sm text-muted-foreground">
-                  Partnering to improve placement outcomes, student readiness, and campus hiring
-                  success through structured, outcome-driven programs.
-                </p>
-                <div className="mt-6 grid grid-cols-3 gap-3">
-                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
-                    <BookOpen className="size-4 text-primary" />
-                    <span className="text-[11px] font-medium text-muted-foreground">Aptitude</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
-                    <Presentation className="size-4 text-primary" />
-                    <span className="text-[11px] font-medium text-muted-foreground">Interviews</span>
-                  </div>
-                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
-                    <GraduationCap className="size-4 text-primary" />
-                    <span className="text-[11px] font-medium text-muted-foreground">Placement</span>
-                  </div>
-                </div>
-                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
-                  For Colleges{" "}
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
-
             {/* Corporates Card */}
             <Link
               to="/corporates"
@@ -244,6 +200,50 @@ function HomePage() {
                 </span>
               </div>
             </Link>
+
+            {/* Colleges Card */}
+            <Link
+              to="/colleges"
+              className="card-lift reveal-child group relative flex flex-col overflow-hidden rounded-sm border border-border bg-card transition-colors hover:border-primary"
+            >
+              <div className="relative">
+                <img
+                  src={photos.campusCohort}
+                  alt="A college cohort at an Elev8 placement readiness program"
+                  className="h-56 w-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="absolute bottom-4 left-5 right-5">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/80">Campus Programs</p>
+                  <h3 className="mt-1 text-xl font-bold text-white">Colleges & Institutions</h3>
+                </div>
+              </div>
+              <div className="flex flex-1 flex-col p-7">
+                <p className="flex-1 text-sm text-muted-foreground">
+                  Partnering to improve placement outcomes, student readiness, and campus hiring
+                  success through structured, outcome-driven programs.
+                </p>
+                <div className="mt-6 grid grid-cols-3 gap-3">
+                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
+                    <BookOpen className="size-4 text-primary" />
+                    <span className="text-[11px] font-medium text-muted-foreground">Aptitude</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
+                    <Presentation className="size-4 text-primary" />
+                    <span className="text-[11px] font-medium text-muted-foreground">Interviews</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2 rounded-sm bg-secondary p-3">
+                    <GraduationCap className="size-4 text-primary" />
+                    <span className="text-[11px] font-medium text-muted-foreground">Placement</span>
+                  </div>
+                </div>
+                <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                  For Colleges{" "}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>
@@ -255,15 +255,14 @@ function HomePage() {
           <div ref={snapCardsRef} className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="card-lift reveal-child rounded-sm border border-border bg-card p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                For Colleges
+                For Corporates
               </p>
-              <h3 className="mt-3 text-2xl font-bold">Placement Accelerator™ Programs</h3>
+              <h3 className="mt-3 text-2xl font-bold">Capability-building Workshops</h3>
               <p className="mt-3 text-sm text-muted-foreground">
-                Delivered as 30-hour, 60-hour, or full-year engagements, mapped to how companies
-                actually hire.
+                Practical, activity-driven sessions designed around your business context.
               </p>
               <ul className="mt-6 space-y-2 text-sm">
-                {["30 hours", "60 hours", "Full-year program"].map((t) => (
+                {["Public Speaking", "Leadership", "Team Building", "Communication"].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <span className="size-1.5 bg-primary" />
                     {t}
@@ -274,14 +273,15 @@ function HomePage() {
 
             <div className="card-lift reveal-child rounded-sm border border-border bg-card p-8">
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-                For Corporates
+                For Colleges
               </p>
-              <h3 className="mt-3 text-2xl font-bold">Capability-building Workshops</h3>
+              <h3 className="mt-3 text-2xl font-bold">Placement Accelerator™ Programs</h3>
               <p className="mt-3 text-sm text-muted-foreground">
-                Practical, activity-driven sessions designed around your business context.
+                Delivered as 30-hour, 60-hour, or full-year engagements, mapped to how companies
+                actually hire.
               </p>
               <ul className="mt-6 space-y-2 text-sm">
-                {["Public Speaking", "Leadership", "Team Building", "Communication"].map((t) => (
+                {["30 hours", "60 hours", "Full-year program"].map((t) => (
                   <li key={t} className="flex items-center gap-2">
                     <span className="size-1.5 bg-primary" />
                     {t}

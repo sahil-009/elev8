@@ -5,8 +5,8 @@ import { logoUrl } from "@/lib/site";
 
 const navItems = [
   { to: "/", label: "Home" },
-  { to: "/colleges", label: "For Colleges" },
   { to: "/corporates", label: "For Corporates" },
+  { to: "/colleges", label: "For Colleges" },
   { to: "/contact", label: "Contact" },
 ] as const;
 

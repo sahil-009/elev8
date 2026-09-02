@@ -28,7 +28,7 @@ export const Route = createFileRoute("/contact")({
 });
 
 function ContactPage() {
-  const [audience, setAudience] = useState<"college" | "corporate">("college");
+  const [audience, setAudience] = useState<"corporate" | "college">("corporate");
   const infoRef = useReveal<HTMLDivElement>();
   const formRef = useReveal<HTMLFormElement>();
 
@@ -94,7 +94,7 @@ function ContactPage() {
           }}
         >
           <div className="flex gap-2">
-            {(["college", "corporate"] as const).map((option) => (
+            {(["corporate", "college"] as const).map((option) => (
               <button
                 key={option}
                 type="button"
@@ -105,7 +105,7 @@ function ContactPage() {
                     : "border-border text-muted-foreground hover:border-primary"
                 }`}
               >
-                {option === "college" ? "I'm a college" : "I'm a company"}
+                {option === "corporate" ? "I'm a company" : "I'm a college"}
               </button>
             ))}
           </div>
@@ -113,7 +113,7 @@ function ContactPage() {
           <div className="mt-6 grid gap-4">
             <Field label="Your name" name="name" required />
             <Field
-              label={audience === "college" ? "College name" : "Company name"}
+              label={audience === "corporate" ? "Company name" : "College name"}
               name="organisation"
               required
             />
